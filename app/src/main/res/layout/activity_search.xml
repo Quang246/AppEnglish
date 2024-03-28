@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:context=".SearchActivity">
+
+   <RelativeLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
+
+       <EditText
+           android:id="@+id/editSearch"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="search"
+           android:padding="12dp"
+           android:background="@drawable/rectangle"
+           android:layout_toLeftOf="@+id/btnSearch" />
+
+       <Button
+           android:id="@+id/btnSearch"
+           android:layout_width="100dp"
+           android:layout_height="wrap_content"
+           android:text="Search"
+           android:layout_alignParentEnd="true"
+           android:layout_marginStart="8dp" />
+
+       <ProgressBar
+           android:id="@+id/progressBar"
+           android:layout_width="100dp"
+           android:layout_height="30dp"
+           android:layout_alignParentEnd="true"
+           android:layout_centerInParent="true"
+           android:indeterminateTint="@color/stringee_end_color"
+           android:visibility="gone"/>
+
+   </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="word"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:textColor="#FFC107"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/txtResultIPA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/ t e s t /"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>
