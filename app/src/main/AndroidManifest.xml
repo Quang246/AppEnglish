@@ -18,7 +18,7 @@
             android:name=".Home"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SearchActivity"
             android:exported="false"></activity>
         <activity
             android:name=".Register"
@@ -27,7 +27,7 @@
             android:name=".Login"
             android:exported="false"></activity>
         <activity
-            android:name=".SearchActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

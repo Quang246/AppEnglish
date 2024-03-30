@@ -23,4 +23,20 @@ public class Meaning {
     public void setDefinitions(ArrayList<Definition> definitions) {
         this.definitions = definitions;
     }
+
+    public String getSynonyms() {
+        String tmp = "";
+        for (String s: synonyms) {
+            tmp = tmp + s  + ", ";
+        }
+        return tmp;
+    }
+
+    public String getAntonym() {
+        String tmp = "";
+        for (String s: antonyms) {
+            tmp = tmp + s  + ", ";
+        }
+        return tmp;
+    }
 }

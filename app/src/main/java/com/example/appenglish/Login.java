@@ -86,7 +86,7 @@ public class Login extends AppCompatActivity {
             boolean kiemtra = dtb.KTLogin(username,pass);
             if (kiemtra) {
                 Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Login.this, Home.class);
+                Intent intent = new Intent(Login.this, SearchActivity.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), "Tên đăng nhập hoặc mật khẩu chưa chính xác!", Toast.LENGTH_SHORT).show();

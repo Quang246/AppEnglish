@@ -22,11 +22,9 @@ import com.example.appenglish.models.OnFetchDataListener;
 
 import java.util.ArrayList;
 
-
 public class SearchActivity extends AppCompatActivity {
     TextView txtResult;
     SearchView editSearch;
-    Button btnSearch;
     RecyclerView rvResultIPA, rvResult;
     MeaningAdapter meaningAdapter;
     PhoneticAdapter phoneticAdapter;
@@ -45,12 +43,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void eventListener() {
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         editSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -74,7 +66,6 @@ public class SearchActivity extends AppCompatActivity {
     void setUp () {
         txtResult = findViewById(R.id.txtResult);
         editSearch = findViewById(R.id.editSearch);
-        btnSearch = findViewById(R.id.btnSearch);
         rvResult = findViewById(R.id.rvResult);
         rvResultIPA = findViewById(R.id.rvResultIPA);
     }

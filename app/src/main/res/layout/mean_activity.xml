@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp">
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/shadow">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,8 +17,9 @@
             android:id="@+id/txtTypeWord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="22dp"
+            android:textSize="25dp"
             android:text="noun"
+            android:fontFamily="monospace"
             android:textStyle="bold"
             android:layout_marginBottom="10dp"
             android:textColor="@color/stringee_end_color" />
@@ -28,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="Definitions :"
             android:layout_marginEnd="5dp"
-            android:textSize="15dp"
+            android:textSize="17dp"
             android:textStyle="bold"
             android:layout_below="@+id/txtTypeWord"/>
 
@@ -44,30 +46,52 @@
 
         <TextView
             android:id="@+id/txtSyn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Synonyms : "
-            android:textSize="15dp"
+            android:textSize="17dp"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
             android:layout_below="@+id/rvDefinition"/>
 
         <TextView
+            android:id="@+id/vlSyn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="value"
+            android:textSize="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/rvDefinition"
+            android:layout_toRightOf="@+id/txtSyn"
+            android:textAlignment="center"/>
+
+        <TextView
             android:id="@+id/txtAnto"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Antonyms : "
-            android:textSize="15dp"
+            android:textSize="17dp"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
             android:layout_below="@+id/txtSyn"/>
+
+        <TextView
+            android:id="@+id/vlAnto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="value"
+            android:textSize="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/txtSyn"
+            android:layout_toRightOf="@+id/txtAnto"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/txtEx"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Example : "
-            android:textSize="15dp"
+            android:textSize="17dp"
             android:textStyle="bold"
             android:layout_below="@+id/txtAnto"/>
 

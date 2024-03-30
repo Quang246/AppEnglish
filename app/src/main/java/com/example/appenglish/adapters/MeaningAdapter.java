@@ -62,6 +62,9 @@ public class MeaningAdapter extends RecyclerView.Adapter<MeaningAdapter.ViewHold
         holder.rvEx.setLayoutManager(m2LayoutManager);
         holder.rvEx.setAdapter(exampleAdapter);
 
+//      synonym
+        holder.vlSyn.setText(m.getSynonyms());
+        holder.vlAnto.setText(m.getAntonym());
     }
 
     @Override
@@ -74,7 +77,7 @@ public class MeaningAdapter extends RecyclerView.Adapter<MeaningAdapter.ViewHold
 //    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTypeWord, txtDefinition, txtSyn, txtAnto, txtEx;
+        TextView txtTypeWord, txtDefinition, txtSyn, txtAnto, txtEx, vlSyn, vlAnto;
         RecyclerView rvDefinition, rvEx;
         public ViewHolder(@NonNull View itemView) {
 
@@ -85,6 +88,8 @@ public class MeaningAdapter extends RecyclerView.Adapter<MeaningAdapter.ViewHold
             rvDefinition = (RecyclerView) itemView.findViewById(R.id.rvDefinition);
             txtSyn = (TextView) itemView.findViewById(R.id.txtSyn);
             txtAnto = (TextView) itemView.findViewById(R.id.txtAnto);
+            vlSyn = (TextView) itemView.findViewById(R.id.vlSyn);
+            vlAnto = (TextView) itemView.findViewById(R.id.vlAnto);
             txtEx = (TextView) itemView.findViewById(R.id.txtEx);
             rvEx = (RecyclerView) itemView.findViewById(R.id.rvEx);
 
