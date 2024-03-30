@@ -12,14 +12,14 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content">
 
-       <EditText
+       <androidx.appcompat.widget.SearchView
            android:id="@+id/editSearch"
            android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:hint="search"
-           android:padding="12dp"
+           android:layout_height="50dp"
            android:background="@drawable/rectangle"
-           android:layout_toLeftOf="@+id/btnSearch" />
+           android:layout_toLeftOf="@+id/btnSearch"
+           app:defaultQueryHint="Searching..."
+           app:iconifiedByDefault="false"/>
 
        <Button
            android:id="@+id/btnSearch"
@@ -50,16 +50,17 @@
         android:textColor="#FFC107"
         android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:id="@+id/txtResultIPA"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvResultIPA"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="/ t e s t /"/>
+        android:paddingBottom="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvResult"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
         android:layout_marginTop="5dp"/>
 
 </LinearLayout>
