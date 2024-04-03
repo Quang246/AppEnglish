@@ -27,12 +27,10 @@ import com.example.appenglish.models.CardModel;
 import java.util.ArrayList;
 
 public class DashboardActivity extends AppCompatActivity {
-    Context context;
     RecyclerView rvCard;
     Button btnAddCard;
     TextView txtSaveWord;
     ImageView btnPrev, btnFilter, btnBaCham;
-    ArrayList<CardModel> arCards;
     CreateDatabase db = new CreateDatabase(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,11 @@ public class DashboardActivity extends AppCompatActivity {
         btnAddCard = findViewById(R.id.btnAddCard);
         txtSaveWord = findViewById(R.id.txtSaveWord);
 
-        getInit();
+//      get email from login
+        SharedPreferences sharedPreferences = getSharedPreferences("email", Context.MODE_PRIVATE);
+        String userEmail = sharedPreferences.getString("email", "");
+
+        getInit(userEmail);
 
         btnAddCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,9 +87,6 @@ public class DashboardActivity extends AppCompatActivity {
                 btnAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        SharedPreferences sharedPreferences = getSharedPreferences("email", Context.MODE_PRIVATE);
-                        String userEmail = sharedPreferences.getString("email", "");
-
                         String valueEditWord = editWord.getText().toString();
                         String valueDescription = editDescription.getText().toString();
 
@@ -100,31 +99,32 @@ public class DashboardActivity extends AppCompatActivity {
 
 //                      insert database
                         db.insertWord(cardModel);
+                        getInit(userEmail);
                         dialog.dismiss();
                     }
                 });
-
 //              show dialog
                 dialog.show();
             }
         });
-
     }
 
-    public void getInit() {
-        arCards = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-            CardModel cardModel = new CardModel();
-            cardModel.setTxtCard_1("Word " + (i + 1));
-            cardModel.setTxtCard_2("descirption " + (i + 1));
-            arCards.add(cardModel);
-        }
+    public void getInit(String email) {
+        ArrayList<CardModel> arCards = db.getAllCards(email);
+//        for (int i = 0; i < arCards.size(); i++) {
+//            CardModel cardModel = new CardModel();
+//            cardModel.setTxtCard_1("Word " + (i + 1));
+//            cardModel.setTxtCard_2("descirption " + (i + 1));
+//            arCards.add(cardModel);
+//        }
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         rvCard.setLayoutManager(mLayoutManager);
 
         CardAdapter cardAdapter = new CardAdapter(this, arCards);
         rvCard.setAdapter(cardAdapter);
+
+        txtSaveWord.setText("ĐÃ GHI NHỚ: " + arCards.size());
 
     }
 }

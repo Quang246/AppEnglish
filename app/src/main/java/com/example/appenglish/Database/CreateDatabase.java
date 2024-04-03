@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.appenglish.models.CardModel;
 import com.example.appenglish.models.User;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class CreateDatabase extends SQLiteOpenHelper {
     private Context context;
 
@@ -70,6 +73,30 @@ public class CreateDatabase extends SQLiteOpenHelper {
 
         db.insert(DataBaseConstant.TABLE_NAME_CARD, null, values);
         db.close();
+    }
+
+//  get all card in database
+    public ArrayList<CardModel> getAllCards(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<CardModel> arCards = new ArrayList<>();
+        String query = "SELECT * FROM " + DataBaseConstant.TABLE_NAME_CARD + " WHERE " +
+                DataBaseConstant.COL_EMAIL_CARD + " = ?";
+        String[] selectionArgs = {email};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            int _ID = cursor.getInt(0);
+            String cursorWord = cursor.getString(1);
+            String cursorDes = cursor.getString(2);
+            String cursorEmail = cursor.getString(3);
+            CardModel cm = new CardModel(cursorWord, cursorDes, cursorEmail);
+            arCards.add(cm);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return arCards;
     }
 
 }
