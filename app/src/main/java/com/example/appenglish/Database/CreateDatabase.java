@@ -6,51 +6,48 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.appenglish.models.CardModel;
 import com.example.appenglish.models.User;
 
 public class CreateDatabase extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "MyDatabaseUser.db";
-    public static final int DATABASE_VERSION = 1;
-    public static final String Table_name = "DuLieuTaiKhoan";
-    public static final String COL_Email = "email";
-    public static final String COL_Username = "username";
-    public static final String COL_Pass = "password";
-    public static final String COL_RePass = "repassword";
-    private static final String Table_Create = "create table DuLieuTaiKhoan ("
-            +"email TEXT PRIMARY KEY,"
-            +"username TEXT,"
-            +"password TEXT,"
-            +"repassword TEXT"
-            +")";
+    private Context context;
+
     public CreateDatabase(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DataBaseConstant.DATABASE_NAME, null, DataBaseConstant.DATABASE_VERSION);
+        this.context = context;
     }
-    SQLiteDatabase db;
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(Table_Create);
-        this.db = db;
+        db.execSQL(DataBaseConstant.CREATE_USER);
+        db.execSQL(DataBaseConstant.CREATE_CARD);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + DataBaseConstant.TABLE_NAME_CARD);
+        db.execSQL("DROP TABLE IF EXISTS " + DataBaseConstant.TABLE_NAME_USER);
+        onCreate(db);
     }
+
+//  register
     public void insertTK(User user){
-        db =this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(CreateDatabase.COL_Email,user.getEmail());
-        values.put(CreateDatabase.COL_Username,user.getUsername());
-        values.put(CreateDatabase.COL_Pass,user.getPassword());
-        values.put(CreateDatabase.COL_RePass,user.getRepass());
-        db.insert(CreateDatabase.Table_name, null, values);
+        values.put(DataBaseConstant.COL_EMAIL_USER,user.getEmail());
+        values.put(DataBaseConstant.COL_USERNAME,user.getUsername());
+        values.put(DataBaseConstant.COL_PASSWORD,user.getPassword());
+        values.put(DataBaseConstant.COL_RE_PASSWORD,user.getRepass());
+
+        db.insert(DataBaseConstant.TABLE_NAME_USER, null, values);
         db.close();
     }
-    public boolean KTLogin(String user_name, String pass_word) {
+//  check login
+    public boolean KTLogin(String email, String pass_word) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String query = "SELECT * FROM " + Table_name + " WHERE username = ? AND password = ?";
-        String[] selectionArgs = {user_name, pass_word};
+        String query = "SELECT * FROM " + DataBaseConstant.TABLE_NAME_USER + " WHERE email = ? AND password = ?";
+        String[] selectionArgs = {email, pass_word};
 
         Cursor cursor = db.rawQuery(query, selectionArgs);
 
@@ -61,5 +58,18 @@ public class CreateDatabase extends SQLiteOpenHelper {
         }
     }
 
+//  insert word to database
+//  table_name: FlashCard
+    public void insertWord(CardModel cardModel) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(DataBaseConstant.COL_WORD, cardModel.getTxtCard_1());
+        values.put(DataBaseConstant.COL_DESCRIPTION, cardModel.getTxtCard_2());
+        values.put(DataBaseConstant.COL_EMAIL_CARD, cardModel.getUser_email());
+
+        db.insert(DataBaseConstant.TABLE_NAME_CARD, null, values);
+        db.close();
+    }
 
 }

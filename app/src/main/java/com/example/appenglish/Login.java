@@ -1,6 +1,8 @@
 package com.example.appenglish;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,18 +16,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import com.example.appenglish.Database.CreateDatabase;
+import com.example.appenglish.models.User;
 
 public class Login extends AppCompatActivity {
     Button btn_Login;
     TextView txtSign_up;
-    EditText edtUser,edtPass;
+    EditText edtEmail,edtPass;
     CreateDatabase dtb;
 
+//  after login, sharedPreferences = email
+    SharedPreferences sharedPreferences;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_app);
 
         setUp();
+
         dtb = new CreateDatabase(this);
         btn_Login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,31 +72,40 @@ public class Login extends AppCompatActivity {
         return true;
     }
 
-
     void setUp () {
-        edtUser = findViewById(R.id.edtUsername);
+        edtEmail = findViewById(R.id.edtEmail);
         edtPass = findViewById(R.id.edtPass);
         btn_Login = findViewById(R.id.btn_Login);
         txtSign_up = findViewById(R.id.txtSign_up);
     }
     void CheckDT() {
 
-        String username = edtUser.getText().toString();
+        String email = edtEmail.getText().toString();
         String pass = edtPass.getText().toString();
 
-        if (username.isEmpty()){
-            edtUser.setError("Vui lòng nhập dữ liệu vào trường này!");
+        if (email.isEmpty()){
+            edtEmail.setError("Vui lòng nhập Email!");
         } else if (pass.isEmpty()){
-            edtPass.setError("Vui lòng nhập dữ liệu vào trường này!");
+            edtPass.setError("Vui lòng nhập Password!");
         } else {
-            boolean kiemtra = dtb.KTLogin(username,pass);
+            boolean kiemtra = dtb.KTLogin(email, pass);
             if (kiemtra) {
+//              save email for word
+                sharedPreferences = getSharedPreferences("email", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("email", email);
+                editor.clear();
+                editor.apply();
+
                 Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Login.this, SearchActivity.class);
+                Intent intent = new Intent(Login.this, DashboardActivity.class);
                 startActivity(intent);
+
+
             } else {
                 Toast.makeText(getApplicationContext(), "Tên đăng nhập hoặc mật khẩu chưa chính xác!", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
 }
