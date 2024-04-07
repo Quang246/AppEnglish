@@ -9,4 +9,7 @@
     <color name="stringee_center_color">#673AB7</color>
     <color name="stringee_end_color">#FF5722</color>
     <color name="mau_nen">#FEF7FF</color>
+    <color name="green_clean">#B0D4</color>
+    <color name="green_bg">#F3FCF7</color>
+    <color name="grey_press">#C7D7FB</color>
 </resources>

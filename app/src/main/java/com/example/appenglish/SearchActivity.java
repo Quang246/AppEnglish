@@ -36,8 +36,8 @@ public class SearchActivity extends AppCompatActivity {
 
         setUp();
 //        builder = new AlertDialog.Builder(this);
-        RetrofitClient retrofitClient = new RetrofitClient(SearchActivity.this);
-        retrofitClient.getWordMeaning(listener, "hello");
+//        RetrofitClient retrofitClient = new RetrofitClient(SearchActivity.this);
+//        retrofitClient.getWordMeaning(listener, "hello");
         eventListener();
 
     }

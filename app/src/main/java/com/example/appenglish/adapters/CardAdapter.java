@@ -1,15 +1,28 @@
 package com.example.appenglish.adapters;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appenglish.DashboardActivity;
+import com.example.appenglish.Database.CreateDatabase;
 import com.example.appenglish.R;
 import com.example.appenglish.models.CardModel;
 
@@ -38,7 +51,62 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
         holder.txtCard_1.setText(c.getTxtCard_1());
         holder.txtCard_2.setText(c.getTxtCard_2());
+        holder.btnBaCham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu menu = new PopupMenu(context, holder.btnBaCham);
+                menu.inflate(R.menu.menu_card);
+                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.delete) {
+//                            Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
 
+                            final Dialog dialog = new Dialog(context);
+                            dialog.requestWindowFeature(Window.FEATURE_ACTION_BAR);
+                            dialog.setContentView(R.layout.dialog_delete);
+
+                            Window window = dialog.getWindow();
+                            if (window == null) {
+                                return false;
+                            }
+                            window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                            WindowManager.LayoutParams windowAttribute = window.getAttributes();
+                            windowAttribute.gravity = Gravity.CENTER;
+
+                            window.setAttributes(windowAttribute);
+
+//                          ấn ra khoảng trống sẽ tắt dialog
+                            dialog.setCancelable(true);
+                            dialog.findViewById(R.id.btnCan).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            dialog.findViewById(R.id.btnDe).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    CreateDatabase db = new CreateDatabase(context);
+                                    db.deleteWord(c.getTxtCard_1(), c.getTxtCard_2());
+                                    cardModels.remove(position);
+                                    notifyItemRemoved(position);
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            dialog.show();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+                //displaying the popup
+                menu.show();
+            }
+        });
     }
 
     @Override

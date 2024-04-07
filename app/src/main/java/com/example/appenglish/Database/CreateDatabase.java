@@ -75,6 +75,16 @@ public class CreateDatabase extends SQLiteOpenHelper {
         db.close();
     }
 
+//  delete word
+//  table_name: FlashCard
+    public void deleteWord(String w, String des) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String table = DataBaseConstant.TABLE_NAME_CARD;
+        String query = DataBaseConstant.COL_WORD + " = ? and " + DataBaseConstant.COL_DESCRIPTION + " = ?";
+        String[] whereArgs = {w, des};
+        db.delete(table, query, whereArgs);
+    }
+
 //  get all card in database
     public ArrayList<CardModel> getAllCards(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -97,6 +107,31 @@ public class CreateDatabase extends SQLiteOpenHelper {
         }
         cursor.close();
         return arCards;
+    }
+
+//  check email google existsed in database
+    public boolean checkEmailGoogleExists(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM WHERE " + DataBaseConstant.COL_EMAIL_USER + " = " + email;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount() != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+//  check word and des cùng 1 hàng không
+    public boolean checkWordDes (String w1, String w2) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + DataBaseConstant.TABLE_NAME_CARD + " WHERE " + DataBaseConstant.COL_WORD + " = ? and " +
+                DataBaseConstant.COL_DESCRIPTION + " = ?";
+        String[] selectionArgs = {w1, w2};
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        if (cursor.getCount() != 0) {
+            return true;
+        }
+        return false;
     }
 
 }

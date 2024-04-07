@@ -18,7 +18,6 @@
             android:background="@color/stringee_background_color"
             tools:ignore="MissingConstraints">
 
-
             <ImageView
                 android:id="@+id/btnPrev"
                 android:layout_width="30dp"

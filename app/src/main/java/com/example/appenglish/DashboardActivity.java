@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.example.appenglish.Database.CreateDatabase;
 import com.example.appenglish.adapters.CardAdapter;
 import com.example.appenglish.models.CardModel;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 import java.util.ArrayList;
 
@@ -32,6 +34,8 @@ public class DashboardActivity extends AppCompatActivity {
     TextView txtSaveWord;
     ImageView btnPrev, btnFilter, btnBaCham;
     CreateDatabase db = new CreateDatabase(this);
+//    GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,8 @@ public class DashboardActivity extends AppCompatActivity {
 //      get email from login
         SharedPreferences sharedPreferences = getSharedPreferences("email", Context.MODE_PRIVATE);
         String userEmail = sharedPreferences.getString("email", "");
+
+//        Toast.makeText(this, account.getEmail(), Toast.LENGTH_SHORT).show();
 
         getInit(userEmail);
 
@@ -111,12 +117,6 @@ public class DashboardActivity extends AppCompatActivity {
 
     public void getInit(String email) {
         ArrayList<CardModel> arCards = db.getAllCards(email);
-//        for (int i = 0; i < arCards.size(); i++) {
-//            CardModel cardModel = new CardModel();
-//            cardModel.setTxtCard_1("Word " + (i + 1));
-//            cardModel.setTxtCard_2("descirption " + (i + 1));
-//            arCards.add(cardModel);
-//        }
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         rvCard.setLayoutManager(mLayoutManager);
