@@ -14,6 +14,8 @@ import com.example.appenglish.models.CardModel;
 import com.example.appenglish.models.CardWord;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class MatchWordActivity extends AppCompatActivity {
     RecyclerView rvMatchWord;
@@ -36,6 +38,9 @@ public class MatchWordActivity extends AppCompatActivity {
             arWords.add(w1);
             arWords.add(w2);
         }
+
+//      shuffer aray
+        Collections.shuffle(arWords);
 
         RecyclerView.LayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         rvMatchWord.setLayoutManager(gridLayoutManager);

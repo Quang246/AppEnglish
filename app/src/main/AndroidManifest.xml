@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AppEnglish"
         tools:targetApi="31">
         <activity
+            android:name=".SelectWordActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity_practice_word"
             android:exported="false" />
         <activity

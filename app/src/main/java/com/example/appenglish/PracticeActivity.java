@@ -25,5 +25,13 @@ public class PracticeActivity extends AppCompatActivity {
             }
         });
 
+        btnMeanWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PracticeActivity.this, SelectWordActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 }
