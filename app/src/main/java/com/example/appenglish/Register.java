@@ -15,13 +15,20 @@ import Database.CreateDatabase;
 
 public class Register extends AppCompatActivity {
 
+    private String mEmail = "";
+    private String mUsername = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_app);
         Button btn_register;
         btn_register = findViewById(R.id.btn_Register);
-        btn_register.setOnClickListener(v -> CheckDT());
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckDT();
+            }
+        });
         TextView txtSign_in;
         txtSign_in = findViewById(R.id.txtSign_in);
         txtSign_in.setOnClickListener(new View.OnClickListener() {

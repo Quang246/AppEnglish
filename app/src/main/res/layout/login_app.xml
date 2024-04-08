@@ -3,7 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="300dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="152dp"
+        android:background="@drawable/radius"
+        android:drawableLeft="@drawable/baseline_email_24"
+        android:drawablePadding="5sp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="text"
+        android:paddingLeft="5sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="Autofill,DuplicateIds,HardcodedText,RtlHardcoded,RtlSymmetry,TextFields" />
 
     <TableRow
         android:id="@+id/tableRow2"
@@ -49,7 +67,7 @@
         android:id="@+id/edtUsername"
         android:layout_width="300dp"
         android:layout_height="51dp"
-        android:layout_marginTop="344dp"
+        android:layout_marginTop="372dp"
         android:background="@drawable/radius"
         android:drawableLeft="@drawable/baseline_account_box_24"
         android:drawablePadding="5sp"
@@ -58,7 +76,7 @@
         android:inputType="text"
         android:paddingLeft="5sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry,TextContrastCheck" />
@@ -108,28 +126,33 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_width="147dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="76dp"
         android:text="Don't have account?"
         android:textColor="#009688"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.399"
+        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Login"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.969"
         tools:ignore="HardcodedText,TextContrastCheck" />
 
     <TextView
         android:id="@+id/txtSign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="76dp"
         android:text="Sign up"
         android:textColor="#C12323"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Login" />
+        app:layout_constraintHorizontal_bias="0.708"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.958"
+        tools:ignore="HardcodedText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,6 +26,7 @@ public class CreateDatabase extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     SQLiteDatabase db;
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Table_Create);
@@ -46,11 +47,24 @@ public class CreateDatabase extends SQLiteOpenHelper {
         db.insert(CreateDatabase.Table_name, null, values);
         db.close();
     }
-    public boolean KTLogin(String user_name, String pass_word) {
+    public boolean KTUser(String user_name) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String query = "SELECT * FROM " +Table_name+ " WHERE username = ? AND password = ?";
-        String[] selectionArgs = {user_name, pass_word};
+        String query = "SELECT * FROM " +Table_name+ " WHERE username = ?";
+        String[] selectionArgs = {user_name};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        if (cursor.getCount() ==0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean KTLogin(String email,String user_name, String pass_word) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " +Table_name+ " WHERE email=? AND username = ? AND password = ?";
+        String[] selectionArgs = {email, user_name, pass_word};
 
         Cursor cursor = db.rawQuery(query, selectionArgs);
 
@@ -60,6 +74,33 @@ public class CreateDatabase extends SQLiteOpenHelper {
             return true;
         }
     }
+    public boolean KTPass(String email,String pass_word) {
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        String query = "SELECT * FROM " +Table_name+ " WHERE email=? AND password = ?";
+        String[] selectionArgs = {email, pass_word};
 
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        if (cursor.getCount() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public void updateData(String email, String username, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("username", username);
+        values.put("password", password);
+        values.put("repassword", password);
+        db.update(Table_name, values, "email = ?", new String[]{email});
+
+        db.close();
+    }
+    public void deleteData(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Table_name, "email = ?", new String[]{email});
+        db.close();
+    }
 }

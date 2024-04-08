@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_home"
+            android:title="@string/nav_home"
+            android:icon="@drawable/house_solid"
+        />
+        <item android:id="@+id/nav_coban"
+            android:title="@string/nav_coban"
+            android:icon="@drawable/baseline_class_24"/>
+        <item android:id="@+id/nav_toeic"
+            android:title="@string/nav_toeic"
+            android:icon="@drawable/baseline_class_24"/>
+        <item android:id="@+id/nav_ielts"
+            android:title="@string/nav_ielts"
+            android:icon="@drawable/baseline_class_24"/>
+        <item android:id="@+id/nav_test"
+            android:title="@string/nav_Test"
+            android:icon="@drawable/baseline_class_24"/>
+    </group>
+    <item android:title="@string/nav_account">
+        <menu>
+            <item android:id="@+id/nav_profile"
+                android:title="@string/nav_profile"
+                android:icon="@drawable/card_solid"/>
+            <item android:id="@+id/nav_edit"
+                android:title="@string/nav_editacc"
+                android:icon="@drawable/user_pen_solid"/>
+        </menu>
+    </item>
+    <group>
+        <item android:id="@+id/nav_setting"
+            android:title="@string/nav_setting"
+            android:icon="@drawable/setting_solid"/>
+        <item android:id="@+id/nav_logout"
+        android:title="@string/nav_logout"
+        android:icon="@drawable/right_from_bracket_solid"/>
+    </group>
+</menu>
