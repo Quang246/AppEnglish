@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#CCC</color>
+    <color name="stringee_color">#F5C50A0A</color>
+    <color name="stringee_background_color">#2196F3</color>
+    <color name="stringee_background_dam_color">#3050F9</color>
+    <color name="stringee_center_color">#673AB7</color>
+    <color name="stringee_end_color">#FF5722</color>
+    <color name="mau_nen">#FEF7FF</color>
+    <color name="green_clean">#B0D4</color>
+    <color name="green_bg">#F3FCF7</color>
+    <color name="grey_press">#C7D7FB</color>
 </resources>

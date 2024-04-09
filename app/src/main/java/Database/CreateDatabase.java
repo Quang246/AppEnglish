@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.appenglish.models.CardModel;
+
+import java.util.ArrayList;
+
 import DTO_User.User;
 
 public class CreateDatabase extends SQLiteOpenHelper {
@@ -102,5 +106,78 @@ public class CreateDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Table_name, "email = ?", new String[]{email});
         db.close();
+    }
+
+
+    //
+    public void insertWord(CardModel cardModel) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(DataBaseConstant.COL_WORD, cardModel.getTxtCard_1());
+        values.put(DataBaseConstant.COL_DESCRIPTION, cardModel.getTxtCard_2());
+        values.put(DataBaseConstant.COL_EMAIL_CARD, cardModel.getUser_email());
+
+        db.insert(DataBaseConstant.TABLE_NAME_CARD, null, values);
+        db.close();
+    }
+
+    //  delete word
+//  table_name: FlashCard
+    public void deleteWord(String w, String des) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String table = DataBaseConstant.TABLE_NAME_CARD;
+        String query = DataBaseConstant.COL_WORD + " = ? and " + DataBaseConstant.COL_DESCRIPTION + " = ?";
+        String[] whereArgs = {w, des};
+        db.delete(table, query, whereArgs);
+    }
+
+    //  get all card in database
+    public ArrayList<CardModel> getAllCards(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<CardModel> arCards = new ArrayList<>();
+        String query = "SELECT * FROM " + DataBaseConstant.TABLE_NAME_CARD + " WHERE " +
+                DataBaseConstant.COL_EMAIL_CARD + " = ?";
+        String[] selectionArgs = {email};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            int _ID = cursor.getInt(0);
+            String cursorWord = cursor.getString(1);
+            String cursorDes = cursor.getString(2);
+            String cursorEmail = cursor.getString(3);
+            CardModel cm = new CardModel(cursorWord, cursorDes, cursorEmail);
+            arCards.add(cm);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return arCards;
+    }
+
+    //  check email google existsed in database
+    public boolean checkEmailGoogleExists(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM WHERE " + DataBaseConstant.COL_EMAIL_USER + " = " + email;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount() != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //  check word and des cùng 1 hàng không
+    public boolean checkWordDes (String w1, String w2) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + DataBaseConstant.TABLE_NAME_CARD + " WHERE " + DataBaseConstant.COL_WORD + " = ? and " +
+                DataBaseConstant.COL_DESCRIPTION + " = ?";
+        String[] selectionArgs = {w1, w2};
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        if (cursor.getCount() != 0) {
+            return true;
+        }
+        return false;
     }
 }
