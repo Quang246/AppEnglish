@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -20,39 +21,59 @@ import androidx.fragment.app.Fragment;
 import com.example.appenglish.R;
 
 public class SettingFragment extends Fragment {
-    View view;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch switcher;
-    boolean nigthMODE;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+
     TextView cskh;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragmen_setting,container,false);
+//        super.onCreate(savedInstanceState);
+//        view = inflater.inflate(R.layout.fragment_setting,container,false);
+//        switcher = view.findViewById(R.id.switcher);
+//        sharedPreferences = getActivity().getSharedPreferences("MODE", Context.MODE_PRIVATE);
+//        nigthMODE = sharedPreferences.getBoolean("nigth", false);
+//        if(nigthMODE){
+//            switcher.setChecked(true);
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//        }
+//        switcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                val editor = sharedPreferences.edit();
+//                editor.putBoolean("nigth", isChecked);
+//                editor.apply();
+//
+//                if (isChecked) {
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                } else {
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                }
+//
+//        });
+        View view = inflater.inflate(R.layout.fragment_setting, container, false);
         switcher = view.findViewById(R.id.switcher);
-        sharedPreferences = getActivity().getSharedPreferences("MODE", Context.MODE_PRIVATE);
-        nigthMODE = sharedPreferences.getBoolean("nigth", false);
-        if(nigthMODE){
-            switcher.setChecked(true);
-        }
-        switcher.setOnClickListener(new View.OnClickListener() {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MODE", Context.MODE_PRIVATE);
+        boolean nightMode = sharedPreferences.getBoolean("night", false);
+
+        switcher.setChecked(nightMode);
+
+        switcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if(nigthMODE){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    editor = sharedPreferences.edit();
-                    editor.putBoolean("night", false);
-                }else{
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    editor = sharedPreferences.edit();
-                    editor.putBoolean("night", true);
-                }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("night", isChecked);
                 editor.apply();
+
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
             }
         });
 
+        
         //cskh
         cskh = view.findViewById(R.id.cskh);
         cskh.setOnClickListener(new View.OnClickListener() {

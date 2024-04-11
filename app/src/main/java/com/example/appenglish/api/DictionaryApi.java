@@ -9,7 +9,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface DictionaryApi {
-
     @GET("entries/en/{word}")
     Call<List<MeanModel>> getWord(
             @Path("word") String word

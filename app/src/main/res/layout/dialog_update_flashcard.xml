@@ -8,10 +8,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Flashcard"
+        android:text="Update Flashcard"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:textColor="@color/white"
         android:textAlignment="center"
         android:padding="10dp"
         android:background="@drawable/bg_half_top_side"/>
@@ -59,10 +58,10 @@
                 android:background="@drawable/btn_dialog_cancel"/>
 
             <Button
-                android:id="@+id/btnAdd"
+                android:id="@+id/btnOk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add"
+                android:text="Ok"
                 android:textStyle="bold"
                 android:textSize="18dp"
                 android:padding="10dp"

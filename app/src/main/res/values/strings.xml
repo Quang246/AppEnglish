@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">AppEnglish</string>
+    <string name="app_name">App English</string>
     <string name="nav_home">Home</string>
     <string name="nav_coban">Basic Class</string>
     <string name="nav_toeic">Toeic Class</string>
-    <string name="nav_ielts">Ielts Class</string>
+    <string name="nav_dashboard">Dashboard</string>
     <string name="nav_account">Account</string>
     <string name="nav_profile">My Profile</string>
     <string name="nav_editacc">Edit Account</string>
-    <string name="nav_Test">Test</string>
+    <string name="nav_practice">Practice</string>
     <string name="nav_setting">Settings</string>
     <string name="nav_logout">Log Out</string>
     <string name="nav_openDrawer">Open navigation drawer</string>

@@ -3,32 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="5dp">
 
     <ImageView
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@mipmap/ic_launcher"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:src="@drawable/circle_user_solid"
         tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
+        android:id="@+id/headerLayoutUsername"
         android:layout_marginStart="8dp"
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
-        android:textColor="@color/material_dynamic_primary20"
-        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/stringee_end_color"
+        android:textSize="18sp"
         tools:ignore="HardcodedText,TextContrastCheck" />
 
     <TextView
+        android:id="@+id/headerLayoutEmail"
+        android:layout_marginTop="5dp"
         android:layout_marginStart="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="abc@gmail.com"
-        android:textColor="@color/material_dynamic_primary20"
+        android:textColor="@color/stringee_color"
         android:textSize="14sp"
         tools:ignore="HardcodedText,TextContrastCheck" />
 

@@ -3,25 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-
-    <EditText
-        android:id="@+id/edtEmail"
-        android:layout_width="300dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="152dp"
-        android:background="@drawable/radius"
-        android:drawableLeft="@drawable/baseline_email_24"
-        android:drawablePadding="5sp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="text"
-        android:paddingLeft="5sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:ignore="Autofill,DuplicateIds,HardcodedText,RtlHardcoded,RtlSymmetry,TextFields" />
+    android:layout_height="match_parent">
 
     <TableRow
         android:id="@+id/tableRow2"
@@ -64,19 +46,18 @@
         tools:ignore="HardcodedText,MissingConstraints,TextSizeCheck" />
 
     <EditText
-        android:id="@+id/edtUsername"
+        android:id="@+id/edtEmail"
         android:layout_width="300dp"
         android:layout_height="51dp"
-        android:layout_marginTop="372dp"
-        android:background="@drawable/radius"
-        android:drawableLeft="@drawable/baseline_account_box_24"
+        android:layout_marginTop="344dp"
+        android:drawableLeft="@drawable/baseline_email_24"
         android:drawablePadding="5sp"
         android:ems="10"
-        android:hint="UserName"
+        android:hint="Email"
         android:inputType="text"
         android:paddingLeft="5sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry,TextContrastCheck" />
@@ -86,7 +67,6 @@
         android:layout_width="300dp"
         android:layout_height="51dp"
         android:layout_marginTop="36dp"
-        android:background="@drawable/radius"
         android:drawableRight="@drawable/eye_slash_solid"
         android:ems="10"
         android:hint="PassWord"
@@ -95,7 +75,7 @@
         android:paddingRight="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtUsername"
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail"
         tools:ignore="Autofill,DuplicateIds,HardcodedText,RtlHardcoded,TextContrastCheck" />
 
     <Button
@@ -103,7 +83,6 @@
         android:layout_width="300sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
-        android:background="@drawable/radius"
         android:text="Login"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -126,33 +105,49 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="147dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
         android:text="Don't have account?"
         android:textColor="#009688"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHorizontal_bias="0.397"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.969"
         tools:ignore="HardcodedText,TextContrastCheck" />
 
     <TextView
         android:id="@+id/txtSign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="28dp"
         android:text="Sign up"
         android:textColor="#C12323"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:textSize="12dp"
+        android:textColor="@color/grey"
+        android:text="Or continue with"
+        app:layout_constraintBottom_toTopOf="@+id/btnGoogle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.708"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.958"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnGoogle"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="28dp"
+        android:src="@drawable/google"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

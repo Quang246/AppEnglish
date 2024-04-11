@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appenglish.R;
-import com.example.appenglish.adapter.MeaningAdapter;
-import com.example.appenglish.adapter.PhoneticAdapter;
+import com.example.appenglish.adapters.MeaningAdapter;
+import com.example.appenglish.adapters.PhoneticAdapter;
 import com.example.appenglish.api.RetrofitClient;
 import com.example.appenglish.models.MeanModel;
 import com.example.appenglish.models.OnFetchDataListener;
@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragmen_home,container,false);
+        view = inflater.inflate(R.layout.fragment_home,container,false);
         setUp();
         eventListener();
         return view;

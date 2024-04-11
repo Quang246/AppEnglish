@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:text="hello"
         android:textStyle="italic"
-        android:textSize="15dp"
-        android:background="@color/mau_nen"/>
+        android:textSize="15dp"/>
 
 </androidx.cardview.widget.CardView>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectWordActivity"
+    tools:context=".activity.SelectWordActivity"
     android:layout_margin="20dp">
 
     <TextView
@@ -13,12 +13,20 @@
         android:layout_height="350dp"
         android:text="tmp"
         android:textSize="50dp"
-        android:gravity="center"
-        android:background="@drawable/shadow"/>
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/pages"
+        android:layout_below="@+id/txtSw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1/10"
+        android:textSize="15dp"
+        android:gravity="center"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSelectWord"
-        android:layout_below="@+id/txtSw"
+        android:layout_below="@+id/pages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

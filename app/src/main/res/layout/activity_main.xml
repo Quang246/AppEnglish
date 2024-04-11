@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/anhnen2"
-    tools:context=".MainActivity" >
+    tools:context=".activity.MainActivity" >
 
     <TextView
         android:id="@+id/textView"
@@ -28,7 +28,7 @@
         android:id="@+id/btn_signIn"
         android:layout_width="304dp"
         android:layout_height="64dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/radius"
         android:text="Sign In"
         android:textSize="18sp"
@@ -42,12 +42,12 @@
         android:id="@+id/txtCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="240dp"
+        android:layout_marginTop="26dp"
         android:text="Create an Account"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signIn"
         tools:ignore="HardcodedText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
