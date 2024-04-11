@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/shadow">
 
     <TextView
         android:id="@+id/txtCl"
@@ -11,7 +12,8 @@
         android:layout_marginTop="2dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"
-        android:layout_height="150dp"/>
+        android:layout_height="150dp"
+        android:background="@drawable/bg_half_bottom_side" />
 
     <RelativeLayout
         android:id="@+id/ic"
