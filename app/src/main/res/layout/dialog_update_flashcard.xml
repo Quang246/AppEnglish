@@ -16,6 +16,7 @@
         android:background="@drawable/bg_half_top_side"/>
 
     <LinearLayout
+        android:background="#03A9F4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
@@ -28,7 +29,7 @@
             android:padding="15dp"
             android:hint="Word"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/rectangle"/>
+            android:background="#E7EBEC"/>
 
         <EditText
             android:id="@+id/editDescription"
@@ -37,7 +38,7 @@
             android:padding="15dp"
             android:hint="Description"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/rectangle"/>
+            android:background="#E7EBEC"/>
 
         <GridLayout
             android:layout_width="match_parent"
