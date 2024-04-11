@@ -36,6 +36,7 @@ public class SelectWordActivity extends AppCompatActivity {
     ArrayList<CardModel> subArWords = new ArrayList<>();
     Random random = new Random();
     ArrayList<Integer> set = new ArrayList<>();
+    private int index = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,13 +80,18 @@ public class SelectWordActivity extends AppCompatActivity {
         rvSelectWord.setLayoutManager(mLayoutManager);
 
 //      set ngau nhieu cho txtSw
-        int r = random.nextInt(arWords.size());
-        String w = setWordIndex.get(r).getTxtCard_1();
-        txtSw.setText(w);
+//        int r = random.nextInt(arWords.size());
+//        String w = setWordIndex.get(r).getTxtCard_1();
+//        txtSw.setText(w);
+
+//        String w = setWordIndex.get(index).getTxtCard_1();
+//        txtSw.setText(w);
 
 //      check trung
         updateSubArWords();
-        pages.setText(set.size() + "/" + arWords.size());
+//        pages.setText(set.size() + "/" + arWords.size());
+        pages.setText(index + "/" + arWords.size());
+
 
         // Tạo và thiết lập Adapter cho RecyclerView
         SelectWordAdapter selectWordAdapter = new SelectWordAdapter(subArWords, new SelectWordAdapter.OnItemClickListener() {
@@ -103,7 +109,8 @@ public class SelectWordActivity extends AppCompatActivity {
                     Toast.makeText(SelectWordActivity.this, "Incorrect !!", Toast.LENGTH_SHORT).show();
                 }
 
-                pages.setText(set.size() + "/" + arWords.size());
+//                pages.setText(set.size() + "/" + arWords.size());
+                pages.setText(index + "/" + arWords.size());
 
             }
         });
@@ -111,50 +118,50 @@ public class SelectWordActivity extends AppCompatActivity {
 
     }
 
-//  set dialog
+    //  set dialog
     public void showFullDialog() {
         final Dialog dialog = new Dialog(this);
-            dialog.requestWindowFeature(Window.FEATURE_ACTION_BAR);
-            dialog.setContentView(R.layout.dialog_complete);
+        dialog.requestWindowFeature(Window.FEATURE_ACTION_BAR);
+        dialog.setContentView(R.layout.dialog_complete);
 
-            Window window = dialog.getWindow();
-            if (window == null) {
-                return;
-            }
-            window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Window window = dialog.getWindow();
+        if (window == null) {
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-            WindowManager.LayoutParams windowAttribute = window.getAttributes();
-            windowAttribute.gravity = Gravity.CENTER;
+        WindowManager.LayoutParams windowAttribute = window.getAttributes();
+        windowAttribute.gravity = Gravity.CENTER;
 
-            window.setAttributes(windowAttribute);
+        window.setAttributes(windowAttribute);
 
 //              ấn ra khoảng trống sẽ tắt dialog
-            dialog.setCancelable(true);
-            dialog.findViewById(R.id.btnContinue).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        dialog.setCancelable(true);
+        dialog.findViewById(R.id.btnContinue).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                    Intent i = new Intent(SelectWordActivity.this, SelectWordActivity.class);
 //                    startActivity(i);
 //                    dialog.dismiss();
 
-                    // Khởi tạo Intent để khởi động lại SelectWordActivity
-                    Intent intent = getIntent();
-                    finish(); // Kết thúc Activity hiện tại
+                // Khởi tạo Intent để khởi động lại SelectWordActivity
+                Intent intent = getIntent();
+                finish(); // Kết thúc Activity hiện tại
 //
 //                    // Khởi động lại SelectWordActivity bằng Intent
-                    startActivity(intent);
-                    dialog.dismiss();
+                startActivity(intent);
+                dialog.dismiss();
 //                    recreate();
-                    set.clear();
-                }
-            });
-            dialog.show();
+                set.clear();
+            }
+        });
+        dialog.show();
     }
 
     public void updateSubArWords() {
 
-        int randomIndex;
+//        int randomIndex;
         String randomWord;
 
         subArWords.clear();
@@ -177,22 +184,22 @@ public class SelectWordActivity extends AppCompatActivity {
             rvSelectWord.getAdapter().notifyDataSetChanged();
         }
 
-        randomIndex = random.nextInt(setWordIndex.size());
-        randomWord = setWordIndex.get(randomIndex).getTxtCard_1();
-        txtSw.setText(randomWord);
+//        randomIndex = random.nextInt(setWordIndex.size());
+//        randomWord = setWordIndex.get(randomIndex).getTxtCard_1();
+//        txtSw.setText(randomWord);
 
 //        String s = txtSw.getText().toString();
 
-        if (set.size() != arWords.size()) {
-            while ((checkWord() == false) || (checkSet(randomIndex) == false)) {
-                randomIndex = random.nextInt(setWordIndex.size());
-                randomWord = setWordIndex.get(randomIndex).getTxtCard_1();
-                txtSw.setText(randomWord);
-            }
-            set.add(randomIndex);
-        } else {
-            showFullDialog();
-        }
+//        if (set.size() != arWords.size()) {
+//            while ((checkWord() == false) || (checkSet(randomIndex) == false)) {
+//                randomIndex = random.nextInt(setWordIndex.size());
+//                randomWord = setWordIndex.get(randomIndex).getTxtCard_1();
+//                txtSw.setText(randomWord);
+//            }
+//            set.add(randomIndex);
+//        } else {
+//            showFullDialog();
+//        }
 
 //        while ((checkWord() == false) || (checkSet(randomIndex) == false)) {
 //            randomIndex = random.nextInt(setWordIndex.size());
@@ -200,6 +207,30 @@ public class SelectWordActivity extends AppCompatActivity {
 //            txtSw.setText(randomWord);
 //        }
 //        set.add(randomIndex);
+
+        if (index != setWordIndex.size()) {
+            randomWord = setWordIndex.get(index).getTxtCard_1();
+            txtSw.setText(randomWord);
+
+            while (checkWord() == false) {
+                subArWords.clear();
+                Collections.shuffle(arWords);
+
+                for (CardModel cm: arWords) {
+                    subArWords.add(cm);
+                    if (subArWords.size() == 4) {
+                        break;
+                    }
+                }
+                if (rvSelectWord.getAdapter() != null) {
+                    rvSelectWord.getAdapter().notifyDataSetChanged();
+                }
+            }
+            index++;
+
+        } else {
+            showFullDialog();
+        }
 
     }
 
